@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:js": "eslint ./src ./conf ./build-gh-pages.js",
+    "test": "mocha --compilers js:babel-core/register ./src/components/**/*.test.js",
+    "start": "webpack-dev-server --config conf/webpack.config.js --hot --progress --colors --content-base ./build",
+    "build": "cross-env NODE_ENV=production webpack --config conf/webpack.production.js",
+    "build:gh": "npm run build && node ./build-gh-pages.js && rm -r ./dist"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Evan Palmer",
+  "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^15.2.1",
@@ -15,6 +19,7 @@
     "react-router": "^2.5.2"
   },
   "devDependencies": {
+    "autoprefixer": "^6.3.7",
     "babel-core": "^6.4.5",
     "babel-eslint": "^4.1.8",
     "babel-loader": "^6.2.2",
