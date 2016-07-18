@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react'
 import productData from '../../fixtures/productData.js'
+import ProductList from '../ProductList/ProductList.js'
 
 class Main extends React.Component {
   constructor() {
     super()
     this.state = {
       viewAs: "buyer",
-      products:
+      products: productData
     }
     this.onCustomerTypeSelect = this.onCustomerTypeSelect.bind(this)
   }
@@ -18,6 +19,9 @@ class Main extends React.Component {
   render() {
     return (
       <div className="main-root">
+      <header>
+        <h1 className="core-heading">Ecomm Products</h1>
+      </header>
         <span>View as:</span>
         <form className="customer-type-form">
           <input onClick={this.onCustomerTypeSelect}
@@ -29,6 +33,7 @@ class Main extends React.Component {
         </form>
         <h2>Viewing as: {this.state.viewAs}</h2>
         {this.props.children}
+        <footer></footer>
       </div>
     )
   }
